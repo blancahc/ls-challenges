@@ -46,7 +46,7 @@ class Triangle {
   kind() {
     if (this.side1 !== this.side2 && this.side2 !== this.side3 && this.side1 !== this.side3) {
       return 'scalene';
-    } else if (this.side1 === this.side2 && this.side2 === this.side3 && this.side1 === this.side3) {
+    } else if (this.side1 === this.side2 && this.side2 === this.side3) {
       return 'equilateral';
     }
     return 'isosceles';
