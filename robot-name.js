@@ -67,7 +67,6 @@ class Robot {
     let index = Robot.names.indexOf(this.robotName);
     Robot.names.splice(index, 1);
     this.robotName = undefined;
-    this.name();
   }
 }
 
