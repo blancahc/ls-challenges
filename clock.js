@@ -45,8 +45,7 @@ class Clock {
     while (time >= 1440) {
       time = time - 1440;
     }
-    hours = Math.floor(time / Clock.MINUTES_IN_HOUR);
-    this.hour = hours;
+    this.hour = Math.floor(time / Clock.MINUTES_IN_HOUR);
     this.minutes = time % Clock.MINUTES_IN_HOUR;
     return this;
   }
@@ -57,8 +56,7 @@ class Clock {
     while (time <= 0) {
       time = time + 1440;
     }
-    hours = Math.floor(time / Clock.MINUTES_IN_HOUR);
-    this.hour = hours;
+    this.hour = Math.floor(time / Clock.MINUTES_IN_HOUR);
     this.minutes = time % Clock.MINUTES_IN_HOUR;
     console.log(this.minutes)
     return this;
