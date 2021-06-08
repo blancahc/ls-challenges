@@ -24,6 +24,7 @@ class Clock {
     this.minutes = minutes;
   }
   static MINUTES_IN_HOUR = 60;
+  static MINUTES_IN_DAY = 1440;
 
   static at(hour, minutes) {
     if (!minutes) {
@@ -36,30 +37,27 @@ class Clock {
     string += `${this.hour < 10 ? '0' + this.hour : this.hour}:` +
               `${this.minutes < 10 ? '0' + this.minutes : this.minutes}`;
     return string;
-  }
+  } 
   add(minutesToAdd) {
-    let hours = this.hour;
-    let time = (hours * 60) + this.minutes;
+    let time = (this.hour * Clock.MINUTES_IN_HOUR) + this.minutes;
     time = time + minutesToAdd;
     
-    while (time >= 1440) {
-      time = time - 1440;
+    while (time >= Clock.MINUTES_IN_DAY) {
+      time = time - Clock.MINUTES_IN_DAY;
     }
-    this.hour = Math.floor(time / Clock.MINUTES_IN_HOUR);
-    this.minutes = time % Clock.MINUTES_IN_HOUR;
-    return this;
+    let newHour = Math.floor(time / Clock.MINUTES_IN_HOUR);
+    let newMinutes = time % Clock.MINUTES_IN_HOUR;
+    return new Clock(newHour, newMinutes);
   }
   subtract(minutes) {
-    let hours = this.hour;
-    let time = (hours * 60) + this.minutes;
+    let time = (this.hour * Clock.MINUTES_IN_HOUR) + this.minutes;
     time = time - minutes;
     while (time <= 0) {
-      time = time + 1440;
+      time = time + Clock.MINUTES_IN_DAY;
     }
-    this.hour = Math.floor(time / Clock.MINUTES_IN_HOUR);
-    this.minutes = time % Clock.MINUTES_IN_HOUR;
-    console.log(this.minutes)
-    return this;
+    let newHour = Math.floor(time / Clock.MINUTES_IN_HOUR);
+    let newMinutes = time % Clock.MINUTES_IN_HOUR;
+    return new Clock(newHour, newMinutes);
   }
   isEqual(clock2) {
     if (this.hour === clock2.hour && this.minutes === clock2.minutes) {
